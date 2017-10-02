@@ -1,0 +1,28 @@
+body {
+	text-align: center;
+	margin: auto;
+	padding: 300px;
+}
+
+.button {
+	margin: auto;
+	font-size: 50px;
+	width: 100px;
+	background-color: white;
+	border: 5px solid black;
+	display: inline-block;
+	border-radius: 30px;
+	width: 180px;
+}
+
+.on {
+	text-align: left;
+	padding: 15px 40px 15px 15px;
+	color: green;
+}
+
+.off {
+	text-align: right;
+	padding: 15px 15px 15px 40px;
+	color: black;
+}
