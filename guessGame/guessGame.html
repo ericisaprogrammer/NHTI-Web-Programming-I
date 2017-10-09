@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src='guessGame.js'></script>
+		<link rel='stylesheet' href='guessGame.css' />
+	</head>
+	<body>
+		<label class="start" for="input">Number to be guessed:</label>
+		<input class="start" id="initialInput">
+		<div class="start button" id="enterButton" onclick="startGame(this)">Enter</div>
+		
+		<label class="guess" for="input">Guess:</label>
+		<input class="guess" id="guessInput">
+		<div class="guess button" id="guessButton" onclick="guess(this)">Guess</div>
+		<div class="guess button" id="restartButton" onclick="restart(this)">Restart</div>
+		<div id="result"></div>
+	</body>
+</html>

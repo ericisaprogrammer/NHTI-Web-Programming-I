@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+label {
+	font-weight: bold;
+	font-size: 20px;
+	font-family: "Times New Roman" serif;
+}
+
+input {
+	min-width: 72px;
+	min-height: 36px;
+	margin: 5px;
+	border-width: 1px;
+	border-color: black;
+	display: block;
+}
+
+.button {
+	padding: 2px 5px 2px 5px;
+	margin-left: 10px;
+	font-size: 20px;
+	width: 60px;
+	background-color: lightgray;
+	border: 1px solid black;
+	display: block;
+	border-radius: 2px;
+}
+
+.guess {
+	visibility: hidden;
+}
+
+#result {
+	padding: 2px 5px 2px 5px;
+}
+
+#restartButton, #guessButton {
+	display: inline;
+}
