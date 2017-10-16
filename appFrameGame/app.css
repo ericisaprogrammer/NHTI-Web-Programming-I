@@ -1,0 +1,59 @@
+body {
+	font: 1em Verdana, Geneva, sans-serif;
+	padding: 0;
+	margin: 5px;
+	color: Black;
+	background-color: WhiteSmoke;
+}
+label {
+	font-weight: bold;
+	display: inline-block;
+	padding: .1em;
+	margin: .5em;
+}
+input {
+	display: inline-block;
+	padding: .5em;
+	margin: .25em 1em .25em 2em;
+}
+div {
+	padding: 0;
+	margin: 0;
+}
+span {
+	display: inline-block;
+}
+button {
+	margin: .25em;
+	margin-left: 2em;
+	cursor: pointer;
+}
+.guess {
+	
+}
+.hidden {
+	display: none;
+}
+
+/**************/
+/*    App     */
+/**************/
+
+#app {
+	margin: 4px;
+	background-color: #bbc;
+}
+#app>header {
+	padding: 0 0.5em;
+	font-size: 1.5em;
+	color: WhiteSmoke;
+	background-color: #006;
+}
+#app>footer {
+	padding: 0.25em;
+	color: WhiteSmoke;
+	background-color: #006;
+}
+#main {
+	margin: 1em;
+}
