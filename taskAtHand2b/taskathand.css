@@ -87,7 +87,7 @@ label {
 	background-color: white;
 }
 
-#tasl-list .task:hover .tools,
+#task-list .task:hover .tools,
 #task-list .task.selected .tools {
 	opacity: 1;
 }
