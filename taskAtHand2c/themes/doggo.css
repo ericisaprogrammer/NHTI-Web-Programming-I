@@ -1,6 +1,10 @@
+:root {
+	--filename: url(../images/doggo1.gif);
+}
+
 #app {
   background-color: #FFF;
-  background-image: url(../images/doggo1.gif);
+  background: var(--filename);
 }
 #app>header,
 #app>footer{

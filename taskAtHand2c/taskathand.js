@@ -156,15 +156,24 @@ function TaskAtHandApp()
 
 	function setTheme(theme)
 	{
+		$("#main").css("transform", "none");
 		if (theme == "doggo")
 		{
+				//Makes background random doggo .gif
 			var num = Math.floor(Math.random() * 10) + 1;
-			$("#theme-style").attr("href", "themes/" + theme + num + ".css");
+			$("#app").css("--filename", "url(../images/" + theme + num + ".gif)");
+			
 		}
-		else
+		if (theme == "wat")
 		{
-			$("#theme-style").attr("href", "themes/" + theme + ".css");
+			var num = Math.floor(Math.random() * 180) -90;
+			if(num < 0)
+			{
+				num = 360 + num;
+			}
+			$("#main").css("transform", "rotate(" + num + "deg)");
 		}
+		$("#theme-style").attr("href", "themes/" + theme + ".css");
 	}
 
 	function loadTheme()
