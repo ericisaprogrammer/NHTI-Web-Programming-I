@@ -1,0 +1,12 @@
+#app {
+  background-color: #FFF;
+  background-image: url(../images/doggo3.gif);
+}
+#app>header,
+#app>footer{
+  background-color: #000;
+}
+
+#task-list .task .tools button {
+	background: url(../images/idogs.png);
+}

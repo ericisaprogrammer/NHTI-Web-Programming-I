@@ -1,0 +1,17 @@
+html {
+  direction:rtl;
+}
+
+#task-list .task .tools {
+	position: relative;
+	top: .25em;
+	right: .25em;
+	border: 1px solid black;
+	border-radius: 2px;
+	opacity: 0;
+
+	-webkit-transition: all .25s ease;
+	-moz-transition: all .25s ease;
+	-o-transition: all .25s ease;
+	transition: all .25s ease;
+}
