@@ -1,5 +1,13 @@
+root: {
+	--transformAngle: rotate(0deg);
+}
+
 html {
   direction:rtl;
+}
+
+#main {
+	transform: var(--transformAngle);
 }
 
 #task-list .task .tools {
