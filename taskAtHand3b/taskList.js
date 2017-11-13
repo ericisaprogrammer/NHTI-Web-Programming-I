@@ -58,12 +58,24 @@ function TaskList (tasks)
 
   this.moveTaskUp = function(taskId)
   {
-    
+    var index = getTaskIndex(taskId);
+    if(index != 0)
+    {
+      var temp = tasks[index - 1];
+      tasks[index - 1] = tasks[index];
+      tasks[index] = temp;
+    }
   }
 
   this.moveTaskDown = function(taskId)
   {
-
+    var index = getTaskIndex(taskId);
+    if(index != tasks.length - 1)
+    {
+      var temp = tasks[index + 1];
+      tasks[index + 1] = tasks[index];
+      tasks[index] = temp;
+    }
   }
 
   this.each = function(callback)
@@ -75,11 +87,11 @@ function TaskList (tasks)
   }
   function getTaskIndex(taskId)
   {
-    for (var i in tasks)
+    for (var i = 0; i < tasks.length; i++)
     {
       if(tasks[i].id == taskId)
       {
-        return parseInt(i);
+        return i;
       }
     }
     return -1;

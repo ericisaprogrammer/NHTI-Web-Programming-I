@@ -155,11 +155,13 @@ function TaskAtHandApp()
 		if(moveUp)
 		{
 			$task.insertBefore($task.prev());
-			alert(task.id);
 			taskList.moveTaskUp(task.id);
 		}
 		else
+		{
 			$task.insertAfter($task.next());
+			taskList.moveTaskDown(task.id);
+		}
 		saveTaskList();
 	}
 
