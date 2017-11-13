@@ -4,12 +4,18 @@
 function TaskAtHandApp()
 {
 	var version = "v3.2",
-		appStorage = new AppStorage("taskAtHand");
-		taskList = new TaskList();
+		appStorage = new AppStorage("taskAtHand"),
+	 	taskList = new TaskList(),
+	 	timeoutId = 0;
+
 	// creating a private function
-	function setStatus(message)
+	function setStatus(msg, noFade)
 	{
-		$("#app>footer").text(message);
+		$("#app>footer").text(msg).show();
+		if(!noFade)
+		{
+			$("#app>footer").fadeOut(1000);
+		}
 	}
 
 	// creating a public function
@@ -43,7 +49,7 @@ function TaskAtHandApp()
 			var task = new Task(taskName);
 			taskList.addTask(task);
 			appStorage.setValue("nextTaskId", Task.nextTaskId);
-			addTaskElement(taskName);
+			addTaskElement(task);
 			saveTaskList();
 				//Resets value in text input
 			$("#new-task-name").val("").focus();
@@ -60,15 +66,15 @@ function TaskAtHandApp()
 		$("#task-list").append($task);
 
 		$("button.delete", $task).click(function() {
-			removeTask($task);
+			removeTask($task, task);
 		});
 
 		$("button.move-up", $task).click(function() {
-			moveTask($task, true);
+			moveTask($task, true, task);
 		});
 
 		$("button.move-down", $task).click(function() {
-			moveTask($task, false);
+			moveTask($task, false, task);
 		});
 
 		$("span.task-name", $task).click(function() {
@@ -100,6 +106,16 @@ function TaskAtHandApp()
 		});
 	}
 
+	function onChangeTaskDetails(taskId, $input)
+	{
+		var task = taskList.getTask(taskId);
+		if(task)
+		{
+			var fieldName = $input.data("field");
+			task[fieldName] = $input.val();
+			saveTaskList();
+		}
+	}
 		//Changes static text of a task item into editable text input
 	function onEditTaskName($span)
 	{
@@ -126,17 +142,22 @@ function TaskAtHandApp()
 	}
 
 		//Removes given $task item from list
-	function removeTask($task)
+	function removeTask($task, task)
 	{
 		$task.remove();
+		taskList.removeTask(task.id);
 		saveTaskList();
 	}
 
 		//Moves given task item up or down in position
-	function moveTask($task, moveUp)
+	function moveTask($task, moveUp, task)
 	{
 		if(moveUp)
+		{
 			$task.insertBefore($task.prev());
+			alert(task.id);
+			taskList.moveTaskUp(task.id);
+		}
 		else
 			$task.insertAfter($task.next());
 		saveTaskList();
@@ -145,21 +166,31 @@ function TaskAtHandApp()
 		//Saves task list to local storage
 	function saveTaskList()
 	{
-		var tasks = [];
-		$("#task-list .task span.task-name").each(function() {
-			tasks.push($(this).text());
-		});
-		appStorage.setValue("taskList", tasks);
+		if(timeoutId) clearTimeout(timeoutId);
+		setStatus("saving changes...", true);
+		timeoutId = setTimeout(function()
+		{
+			appStorage.setValue("taskList", taskList.getTasks());
+			timeoutId = 0;
+			setStatus("changes saved.");
+		},
+		2000);
 	}
 
 	function loadTaskList()
 	{
 		var tasks = appStorage.getValue("taskList");
-		if(tasks)
+		taskList = new TaskList(tasks);
+		rebuildTaskList();
+	}
+
+	function rebuildTaskList()
+	{
+		$("#task-list").empty();
+		taskList.each(function(task)
 		{
-			for(var i in tasks)
-				addTaskElement(tasks[i]);
-		}
+			addTaskElement(task);
+		});
 	}
 
 	function onSelectTask($task)

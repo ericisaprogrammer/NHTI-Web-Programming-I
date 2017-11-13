@@ -56,6 +56,16 @@ function TaskList (tasks)
     return(index >= 0 ? tasks[index] : null);
   }
 
+  this.moveTaskUp = function(taskId)
+  {
+    
+  }
+
+  this.moveTaskDown = function(taskId)
+  {
+
+  }
+
   this.each = function(callback)
   {
     for(var i in tasks)
@@ -63,16 +73,16 @@ function TaskList (tasks)
       callback(tasks[i]);
     }
   }
-}
-
-function getTaskIndex(taskId)
-{
-  for (var i in tasks)
+  function getTaskIndex(taskId)
   {
-    if(tasks[i].id == taskId)
+    for (var i in tasks)
     {
-      return parseInt(i);
+      if(tasks[i].id == taskId)
+      {
+        return parseInt(i);
+      }
     }
+    return -1;
   }
-  return -1;
+
 }
