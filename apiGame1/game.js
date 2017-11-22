@@ -10,32 +10,31 @@ function Game()
   this.start = function()
   {
     var deck = new Deck();
+    var hand = new Hand("hand");
     deck.new();
 
     $("#newDeck").click( function() {
-      showCount(deck);
+      deck.new();
+      hand.new(deck);
     });
 
     $("#dealCard").click( function() {
-      deck.draw();
+      hand.setDeck(deck);
+      deck.draw(hand);
     });
 
     $("#clearHand").click( function() {
-      alert("Clear Hand was pressed");
+      hand.clear();
     });
 
     $("#shuffleDeck").click( function() {
-      alert("Shuffle Deck was pressed");
+      deck.shuffle();
+      hand.new(deck);
     });
 
     $("#app>header").append(version);
     setStatus("Ready");
   };
-
-  function showCount(deck)
-  {
-    $("#deckCount").text(deck.count);
-  }
 } //End of Game
 
   //Ready function for JQuery; starts app

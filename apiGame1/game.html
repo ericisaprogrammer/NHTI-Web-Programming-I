@@ -9,19 +9,25 @@
     <div id="app">
       <header>Card Game</header>
       <div id="main">
-        <button id="newDeck">New Deck</button>
-        <button id="shuffleDeck">Shuffle Deck</button></br>
+        <div id="buttons">
+          <button id="newDeck">New Deck</button>
+          <button id="shuffleDeck">Shuffle Hand + Deck</button></br>
+          <button id="clearHand">Clear Hand</button>
+          <button id="dealCard">Deal Card</button></br>
+        </div>
         Deck count: <span id="deckCount"></span></br>
         Your hand:
-        <div id="hand">
+        <div id="handContainer">
+          <div id="hand">
+          </div>
         </div>
-        <button id="clearHand">Clear Hand</button>
-        <button id="dealCard">Deal Card</button> </br>
+
       </div>
       <footer></footer>
     </div>
   </body>
   <script src="lib/jquery-3.2.1.min.js"></script>
+  <script src="hand.js"></script>
   <script src="deck.js"></script>
   <script src="game.js"></script>
 </html>

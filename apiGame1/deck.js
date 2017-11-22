@@ -1,63 +1,80 @@
 function Deck()
 {
-    //Initialization of the deck
-  var $deck;
-  this.new = function newDeck()
-  {
-    $.ajax({
-      url: "https://deckofcardsapi.com/api/deck/new",
-      dataType: "json",
-    })
-    .done( function(data) {
-      setDeck(data);
-      this.count = $deck.remaining;
-    })
-    .fail( function(jqXHR, textStatus, errorThrown) {
-      showError(errorThrown)
-    });
-  };
+    var deckID;
+    var $deck;
 
-  this.draw = function drawCard()
-  {
-    $.ajax({
-      url: "https://deckofcardsapi.com/api/deck/" + $deck.deck_id + "/draw/?count=1",
-      dataType: "json"
-    })
-    .done( function(data) {
-      setDeck(data);
-      //return $deck.cards;
-    })
-    .fail( function(jqXHR, textStatus, errorThrown) {
-      showError(errorThrown)
-    });
-  };
+    this.id = function(){
+      return deckID;
+    };
 
-  this.shuffle = function shuffleDeck()
-  {
-    $.ajax({
-      url: "https://deckofcardsapi.com/api/deck/" + $deck.deck_id + "/shuffle/",
-      dataType: "json"
-    })
-    .done( function(data) {
-      setDeck(data);
-    })
-    .fail( function(jqXHR, textStatus, errorThrown) {
-      showError(errorThrown)
-    });
-  };
+    this.new = function()
+    {
+      $.ajax({
+        url: "https://deckofcardsapi.com/api/deck/new/",
+        dataType: "json"
+      })
+      .done(function(data) {
+        deckID = data.deck_id;
+        updateDeck();
+      })
+      .fail(function(a, b, c) {
+        console.log("Error: " + c);
+      });
+    };
 
-  function showError(error)
-  {
-    $("#app>footer").text("Error: " + error);
-  }
+    this.draw = function($hand)
+    {
+      $.ajax({
+        url: "https://deckofcardsapi.com/api/deck/" + deckID + "/draw",
+        dataType: "json"
+      })
+      .done(function(data) {
+        if(data.success)
+        {
+          $hand.add(data);
+        }
+        else {
+          alert(data.error);
+        }
+        updateDeck();
+      })
+      .fail(function(a, b, c) {
+        console.log("Error: " + c);
+      });
+    };
 
-  function setDeck(data)
-  {
-    $deck = data;
-  }
+    this.shuffle = function()
+    {
+      $.ajax({
+        url: "https://deckofcardsapi.com/api/deck/new/shuffle/",
+        dataType: "json"
+      })
+      .done(function(data) {
+        deckID = data.deck_id;
+        updateDeck();
+      })
+      .fail(function(a, b, c) {
+        console.log("Error: " + c);
+      });
+    }
 
-  this.test = function()
-  {
-    alert($deck.remaining);
-  }
+    function updateDeck()
+    {
+      $.ajax({
+        url: "https://deckofcardsapi.com/api/deck/" + deckID,
+        dataType: "json"
+      })
+      .done(function(data) {
+        $deck = data;
+        updateCount();
+      })
+      .fail(function(a, b, c) {
+        console.log("Error: " + c);
+      });
+    }
+
+    function updateCount()
+    {
+      $("#deckCount").text($deck.remaining);
+    }
 }
