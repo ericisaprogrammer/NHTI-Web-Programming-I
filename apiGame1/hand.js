@@ -7,6 +7,7 @@ function Hand(name)
 
   this.add = function(draw)
   {
+    $("#errorMessage").html("");
     var cardID = draw.cards[0].code;
     $.ajax({
       url: "https://deckofcardsapi.com/api/deck/" + deckID
@@ -17,12 +18,13 @@ function Hand(name)
       updateHand();
     })
     .fail(function(a, b, c) {
-      console.log("Error: " + c);
+      $("#errorMessage").html("Error: " + (c ? c : "An unknown error has occurred"));
     });
   };
 
   this.clear = function()
   {
+    $("#errorMessage").html("");
     var cardList = $hand.piles[name].cards;
     $.ajax({
       url: "https://deckofcardsapi.com/api/deck/" + deckID
@@ -33,7 +35,7 @@ function Hand(name)
       updateHand();
     })
     .fail(function(a, b, c) {
-      console.log("Error: " + c);
+      $("#errorMessage").html("Error: " + (c ? c : "An unknown error has occurred"));
     });
   }
 
@@ -65,7 +67,7 @@ function Hand(name)
       updateHandDisplay();
     })
     .fail(function(a, b, c) {
-      console.log("Error: " + c);
+      $("#errorMessage").html("Error: " + (c ? c : "An unknown error has occurred"));
     });
   }
 
@@ -84,7 +86,7 @@ function Hand(name)
       });
     }
     else {
-      console.log("Error: " + $hand.error);
+      $("#errorMessage").html("Error: " + ($hand.error ? $hand.error : "An unknown error has occurred"));
     }
   }
 }

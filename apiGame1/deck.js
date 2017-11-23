@@ -9,6 +9,7 @@ function Deck()
 
     this.new = function()
     {
+      $("#errorMessage").html("");
       $.ajax({
         url: "https://deckofcardsapi.com/api/deck/new/",
         dataType: "json"
@@ -18,12 +19,13 @@ function Deck()
         updateDeck();
       })
       .fail(function(a, b, c) {
-        console.log("Error: " + c);
+        $("#errorMessage").html("Error: " + (c ? c : "An unknown error has occurred"));
       });
     };
 
     this.draw = function($hand)
     {
+      $("#errorMessage").html("");
       $.ajax({
         url: "https://deckofcardsapi.com/api/deck/" + deckID + "/draw",
         dataType: "json"
@@ -34,17 +36,18 @@ function Deck()
           $hand.add(data);
         }
         else {
-          alert(data.error);
+          $("#errorMessage").html("Error: " + (data.error ? data.error : "An unknown error has occurred"));
         }
         updateDeck();
       })
       .fail(function(a, b, c) {
-        console.log("Error: " + c);
+        $("#errorMessage").html("Error: " + (c ? c : "An unknown error has occurred"));
       });
     };
 
     this.shuffle = function()
     {
+      $("#errorMessage").html("");
       $.ajax({
         url: "https://deckofcardsapi.com/api/deck/new/shuffle/",
         dataType: "json"
@@ -54,7 +57,7 @@ function Deck()
         updateDeck();
       })
       .fail(function(a, b, c) {
-        console.log("Error: " + c);
+        $("#errorMessage").html("Error: " + (c ? c : "An unknown error has occurred"));
       });
     }
 
@@ -69,7 +72,7 @@ function Deck()
         updateCount();
       })
       .fail(function(a, b, c) {
-        console.log("Error: " + c);
+        $("#errorMessage").html("Error: " + (c ? c : "An unknown error has occurred"));
       });
     }
 
