@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html>
+  <head>
+    <title>Card Game</title>
+    <link href="game.css" rel="StyleSheet"/>
+    <script src="lib/jquery-3.2.1.min.js"></script>
+    <script src="hand.js"></script>
+    <script src="deck.js"></script>
+    <script src="game.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <header>Card Game</header>
+      <span class="error" id="errorMessage"></span>
+      <div id="main">
+        <div id="buttons">
+          <button id="newDeck">New Deck</button>
+          <button id="shuffleDeck">Shuffle Hand + Deck</button></br>
+          <button id="clearHand">Clear Hand</button>
+          <button id="dealCard">Deal Card</button></br>
+        </div>
+        <div id="display">
+          Deck count: <span id="deckCount"></span></br>
+          Your hand:
+        </div>
+        <div id="handContainer">
+          <div id="hand">
+          </div>
+        </div>
+
+      </div>
+      <footer></footer>
+    </div>
+  </body>
+</html>
