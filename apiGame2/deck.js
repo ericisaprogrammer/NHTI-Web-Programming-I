@@ -47,7 +47,7 @@ function Deck(hands)
 
     this.newGame = function() {
       var blackjack = false;
-      disableButton($("#newGame"));
+      disableButton($("button"));
       $.when(shuffle())
       .then(function() {
         $.when(drawCards(52))
