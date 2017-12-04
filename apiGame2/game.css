@@ -1,0 +1,17 @@
+#main
+{
+  margin: auto;
+  width: 80%;
+  border: 3px solid green;
+  padding: 10px;
+}
+
+.cards
+{
+  height: 277px;
+  width: 200px;
+}
+
+.error{
+  color: red;
+}
