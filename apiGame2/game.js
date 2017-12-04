@@ -30,6 +30,7 @@ function Game()
         $("#hit, #stay").attr("disabled", true);
         $("#playerShown").text("BUST!");
         deck.getHand("dealer").flip();
+        deck.getHand("dealer").showTrue();
         result("Dealer wins");
       }
     });
@@ -52,7 +53,8 @@ function Game()
       }
       else {
         deck.getHand("dealer").flip();
-        calculateWinner(deck.getHands());
+        deck.getHand("dealer").showTrue();
+        calculateWinner();
       }
     });
 
@@ -63,7 +65,7 @@ function Game()
     $("#result").append(res);
   }
 
-  function calculateWinner($hands) {
+  function calculateWinner() {
     var dealerValue = Number($("#dealerValue").text().substring(0, 2));
     var playerValue = Number($("#playerValue").text().substring(0, 2));
 
